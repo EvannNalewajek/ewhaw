@@ -9,5 +9,7 @@
   "everythingwehavealwayswanted.configuration.items": "Item List",
   "everythingwehavealwayswanted.configuration.logDirtBlock": "Log Dirt Block",
   "everythingwehavealwayswanted.configuration.magicNumberIntroduction": "Magic Number Text",
-  "everythingwehavealwayswanted.configuration.magicNumber": "Magic Number"
+  "everythingwehavealwayswanted.configuration.magicNumber": "Magic Number",
+
+  "block.everythingwehavealwayswanted.mega_iron_block": "Mega Iron Block"
 }

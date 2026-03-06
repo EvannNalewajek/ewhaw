@@ -1,5 +1,7 @@
 package com.minecraft.mod.ewhaw;
 
+import com.minecraft.mod.ewhaw.registry.ModBlocks;
+import com.minecraft.mod.ewhaw.registry.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -86,6 +88,9 @@ public class EverythingWeHaveAlwaysWanted {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
