@@ -1,0 +1,13 @@
+{
+  "itemGroup.everythingwehavealwayswanted": "Example Mod Tab",
+  "block.everythingwehavealwayswanted.example_block": "Example Block",
+  "item.everythingwehavealwayswanted.example_item": "Example Item",
+
+  "everythingwehavealwayswanted.configuration.title": "Everything We Have Always Wanted Configs",
+  "everythingwehavealwayswanted.configuration.section.everythingwehavealwayswanted.common.toml": "Everything We Have Always Wanted Configs",
+  "everythingwehavealwayswanted.configuration.section.everythingwehavealwayswanted.common.toml.title": "Everything We Have Always Wanted Configs",
+  "everythingwehavealwayswanted.configuration.items": "Item List",
+  "everythingwehavealwayswanted.configuration.logDirtBlock": "Log Dirt Block",
+  "everythingwehavealwayswanted.configuration.magicNumberIntroduction": "Magic Number Text",
+  "everythingwehavealwayswanted.configuration.magicNumber": "Magic Number"
+}
