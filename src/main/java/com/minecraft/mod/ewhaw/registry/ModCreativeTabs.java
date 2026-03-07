@@ -1,0 +1,31 @@
+package com.minecraft.mod.ewhaw.registry;
+
+import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class ModCreativeTabs {
+
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EverythingWeHaveAlwaysWanted.MODID);
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EWHAW_TAB =
+            CREATIVE_MODE_TABS.register("ewhaw_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.everythingwehavealwayswanted.ewhaw_tab"))
+                    .icon(() -> new ItemStack(ModItems.MEGA_IRON_PICKAXE.get()))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModItems.MEGA_IRON_BLOCK_ITEM.get());
+                        output.accept(ModItems.MEGA_IRON_PICKAXE.get());
+                    })
+                    .build());
+
+    public static void register(IEventBus eventBus) {
+        CREATIVE_MODE_TABS.register(eventBus);
+    }
+}

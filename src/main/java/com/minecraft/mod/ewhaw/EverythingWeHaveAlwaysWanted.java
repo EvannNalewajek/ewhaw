@@ -2,6 +2,7 @@ package com.minecraft.mod.ewhaw;
 
 import com.minecraft.mod.ewhaw.registry.ModBlocks;
 import com.minecraft.mod.ewhaw.registry.ModItems;
+import com.minecraft.mod.ewhaw.registry.ModCreativeTabs;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -91,6 +92,7 @@ public class EverythingWeHaveAlwaysWanted {
 
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

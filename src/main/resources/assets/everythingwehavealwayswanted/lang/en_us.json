@@ -12,5 +12,6 @@
   "everythingwehavealwayswanted.configuration.magicNumber": "Magic Number",
 
   "block.everythingwehavealwayswanted.mega_iron_block": "Mega Iron Block",
-  "item.everythingwehavealwayswanted.mega_iron_pickaxe": "Mega Iron Pickaxe"
+  "item.everythingwehavealwayswanted.mega_iron_pickaxe": "Mega Iron Pickaxe",
+  "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted"
 }
