@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "everythingwehavealwayswanted:block/mega_netherite_block"
+  }
+}

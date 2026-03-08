@@ -21,7 +21,14 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(ModItems.MEGA_IRON_PICKAXE.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.MEGA_IRON_BLOCK_ITEM.get());
+                        output.accept(ModItems.MEGA_GOLD_BLOCK_ITEM.get());
+                        output.accept(ModItems.MEGA_DIAMOND_BLOCK_ITEM.get());
+                        output.accept(ModItems.MEGA_NETHERITE_BLOCK_ITEM.get());
+
                         output.accept(ModItems.MEGA_IRON_PICKAXE.get());
+                        output.accept(ModItems.MEGA_GOLD_PICKAXE.get());
+                        output.accept(ModItems.MEGA_DIAMOND_PICKAXE.get());
+                        output.accept(ModItems.MEGA_NETHERITE_PICKAXE.get());
                     })
                     .build());
 

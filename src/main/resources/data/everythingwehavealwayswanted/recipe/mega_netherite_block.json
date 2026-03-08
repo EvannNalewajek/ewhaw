@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " O ",
+    "OXO",
+    " O "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:netherite_block"
+    },
+    "O": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_netherite_block",
+    "count": 1
+  }
+}

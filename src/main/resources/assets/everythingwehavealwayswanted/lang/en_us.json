@@ -12,6 +12,14 @@
   "everythingwehavealwayswanted.configuration.magicNumber": "Magic Number",
 
   "block.everythingwehavealwayswanted.mega_iron_block": "Mega Iron Block",
+  "block.everythingwehavealwayswanted.mega_gold_block": "Mega Gold Block",
+  "block.everythingwehavealwayswanted.mega_diamond_block": "Mega Diamond Block",
+  "block.everythingwehavealwayswanted.mega_netherite_block": "Mega Netherite Block",
+
   "item.everythingwehavealwayswanted.mega_iron_pickaxe": "Mega Iron Pickaxe",
+  "item.everythingwehavealwayswanted.mega_gold_pickaxe": "Mega Gold Pickaxe",
+  "item.everythingwehavealwayswanted.mega_diamond_pickaxe": "Mega Diamond Pickaxe",
+  "item.everythingwehavealwayswanted.mega_netherite_pickaxe": "Mega Netherite Pickaxe",
+
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted"
 }

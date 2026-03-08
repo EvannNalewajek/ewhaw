@@ -11,9 +11,9 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class MegaIronPickaxeItem extends PickaxeItem {
+public class MegaPickaxeItem extends PickaxeItem {
 
-    public MegaIronPickaxeItem(Tier tier, Properties properties) {
+    public MegaPickaxeItem(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
@@ -46,7 +46,7 @@ public class MegaIronPickaxeItem extends PickaxeItem {
 
                     BlockState targetState = level.getBlockState(targetPos);
 
-                    if (!shouldBreakExtraBlock(level, stack, state, targetState, targetPos)) {
+                    if (shouldBreakExtraBlock(level, stack, state, targetState, targetPos)) {
                         continue;
                     }
 
@@ -61,7 +61,7 @@ public class MegaIronPickaxeItem extends PickaxeItem {
         return super.mineBlock(stack, level, state, pos, entity);
     }
 
-    private boolean shouldBreakExtraBlock(
+    boolean shouldBreakExtraBlock(
             Level level,
             ItemStack stack,
             BlockState originState,
@@ -69,25 +69,25 @@ public class MegaIronPickaxeItem extends PickaxeItem {
             BlockPos targetPos
     ) {
         if (targetState.isAir()) {
-            return false;
+            return true;
         }
 
         // blocs incassables
         if (targetState.getDestroySpeed(level, targetPos) < 0.0F) {
-            return false;
+            return true;
         }
 
         // évite de casser des blocs "hors outil"
         if (!stack.getItem().isCorrectToolForDrops(stack, targetState)) {
-            return false;
+            return true;
         }
 
         // évite les blocs que la pioche casse lentement / anormalement
         if (this.getDestroySpeed(stack, targetState) <= 1.0F) {
-            return false;
+            return true;
         }
 
         // garde seulement le même type de bloc que celui frappé
-        return targetState.is(originState.getBlock());
+        return !targetState.is(originState.getBlock());
     }
 }

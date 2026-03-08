@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "everythingwehavealwayswanted:mega_iron_block",
-    "everythingwehavealwayswanted:mega_gold_block",
     "everythingwehavealwayswanted:mega_diamond_block",
     "everythingwehavealwayswanted:mega_netherite_block"
   ]
