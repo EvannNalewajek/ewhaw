@@ -4,6 +4,8 @@ import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
 
 import com.minecraft.mod.ewhaw.item.MegaGoldPickaxeItem;
 import com.minecraft.mod.ewhaw.item.MegaPickaxeItem;
+import com.minecraft.mod.ewhaw.item.MegaGoldenShovelItem;
+import com.minecraft.mod.ewhaw.item.MegaShovelItem;
 import com.minecraft.mod.ewhaw.item.ModToolTiers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -33,28 +35,56 @@ public class ModItems {
             ITEMS.register("mega_iron_pickaxe",
                     () -> new MegaPickaxeItem(
                             ModToolTiers.MEGA_IRON,
-                            new Item.Properties()
+                            new Item.Properties().attributes(MegaPickaxeItem.createAttributes(ModToolTiers.MEGA_IRON, 1.0F, -2.8F))
                     ));
 
     public static final DeferredItem<Item> MEGA_GOLD_PICKAXE =
             ITEMS.register("mega_gold_pickaxe",
                     () -> new MegaGoldPickaxeItem(
                             ModToolTiers.MEGA_GOLD,
-                            new Item.Properties()
+                            new Item.Properties().attributes(MegaGoldPickaxeItem.createAttributes(ModToolTiers.MEGA_GOLD, 1.0F, -2.8F))
                     ));
 
     public static final DeferredItem<Item> MEGA_DIAMOND_PICKAXE =
             ITEMS.register("mega_diamond_pickaxe",
                     () -> new MegaPickaxeItem(
                             ModToolTiers.MEGA_DIAMOND,
-                            new Item.Properties()
+                            new Item.Properties().attributes(MegaPickaxeItem.createAttributes(ModToolTiers.MEGA_DIAMOND, 1.0F, -2.8F))
                     ));
 
     public static final DeferredItem<Item> MEGA_NETHERITE_PICKAXE =
             ITEMS.register("mega_netherite_pickaxe",
                     () -> new MegaPickaxeItem(
                             ModToolTiers.MEGA_NETHERITE,
-                            new Item.Properties()
+                            new Item.Properties().fireResistant().attributes(MegaPickaxeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 1.0F, -2.8F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_IRON_SHOVEL =
+            ITEMS.register("mega_iron_shovel",
+                    () -> new MegaShovelItem(
+                            ModToolTiers.MEGA_IRON,
+                            new Item.Properties().attributes(MegaShovelItem.createAttributes(ModToolTiers.MEGA_IRON, 1.5F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_GOLDEN_SHOVEL =
+            ITEMS.register("mega_golden_shovel",
+                    () -> new MegaGoldenShovelItem(
+                            ModToolTiers.MEGA_GOLD,
+                            new Item.Properties().attributes(MegaGoldenShovelItem.createAttributes(ModToolTiers.MEGA_GOLD, 1.5F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_DIAMOND_SHOVEL =
+            ITEMS.register("mega_diamond_shovel",
+                    () -> new MegaShovelItem(
+                            ModToolTiers.MEGA_DIAMOND,
+                            new Item.Properties().attributes(MegaShovelItem.createAttributes(ModToolTiers.MEGA_DIAMOND, 1.5F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_NETHERITE_SHOVEL =
+            ITEMS.register("mega_netherite_shovel",
+                    () -> new MegaShovelItem(
+                            ModToolTiers.MEGA_NETHERITE,
+                            new Item.Properties().fireResistant().attributes(MegaShovelItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 1.5F, -3.0F))
                     ));
 
     public static void register(IEventBus eventBus) {

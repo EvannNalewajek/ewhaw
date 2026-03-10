@@ -1,6 +1,13 @@
 {
   "replace": false,
   "values": [
-    "everythingwehavealwayswanted:mega_iron_pickaxe"
+    "everythingwehavealwayswanted:mega_iron_pickaxe",
+    "everythingwehavealwayswanted:mega_gold_pickaxe",
+    "everythingwehavealwayswanted:mega_diamond_pickaxe",
+    "everythingwehavealwayswanted:mega_netherite_pickaxe",
+    "everythingwehavealwayswanted:mega_iron_shovel",
+    "everythingwehavealwayswanted:mega_gold_shovel",
+    "everythingwehavealwayswanted:mega_diamond_shovel",
+    "everythingwehavealwayswanted:mega_netherite_shovel"
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "M": {
+      "item": "everythingwehavealwayswanted:mega_diamond_block"
+    },
+    "S": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_diamond_shovel",
+    "count": 1
+  }
+}

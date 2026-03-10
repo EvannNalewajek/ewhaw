@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "everythingwehavealwayswanted:item/mega_diamond_shovel"
+  }
+}
