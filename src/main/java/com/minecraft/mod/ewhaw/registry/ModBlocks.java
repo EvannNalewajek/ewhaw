@@ -10,11 +10,22 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import com.minecraft.mod.ewhaw.block.MortarBlock;
 
 public class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(EverythingWeHaveAlwaysWanted.MODID);
+
+    public static final DeferredBlock<Block> MORTAR =
+            BLOCKS.register("mortar",
+                    () -> new MortarBlock(
+                            BlockBehaviour.Properties.of()
+                                    .strength(5.0f, 6.0f)
+                                    .sound(SoundType.METAL)
+                                    .requiresCorrectToolForDrops()
+                                    .noOcclusion()
+                    ));
 
     public static final DeferredBlock<Block> MEGA_IRON_BLOCK =
             BLOCKS.register("mega_iron_block",

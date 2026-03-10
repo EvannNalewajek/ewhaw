@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "everythingwehavealwayswanted:block/mortar", "y": 180 },
+    "facing=east":  { "model": "everythingwehavealwayswanted:block/mortar", "y": 270 },
+    "facing=south": { "model": "everythingwehavealwayswanted:block/mortar" },
+    "facing=west":  { "model": "everythingwehavealwayswanted:block/mortar", "y": 90 }
+  }
+}

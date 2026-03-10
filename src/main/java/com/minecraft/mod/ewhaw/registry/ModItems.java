@@ -92,6 +92,9 @@ public class ModItems {
             ITEMS.register("mega_magnet",
                     () -> new MegaMagnetItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<BlockItem> MORTAR_ITEM =
+            ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

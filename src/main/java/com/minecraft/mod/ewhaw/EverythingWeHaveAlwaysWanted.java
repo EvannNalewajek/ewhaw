@@ -3,6 +3,9 @@ package com.minecraft.mod.ewhaw;
 import com.minecraft.mod.ewhaw.registry.ModBlocks;
 import com.minecraft.mod.ewhaw.registry.ModItems;
 import com.minecraft.mod.ewhaw.registry.ModCreativeTabs;
+import com.minecraft.mod.ewhaw.registry.ModBlockEntities;
+import com.minecraft.mod.ewhaw.registry.ModEntityTypes;
+import com.minecraft.mod.ewhaw.registry.ModMenuTypes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -93,6 +96,9 @@ public class EverythingWeHaveAlwaysWanted {
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

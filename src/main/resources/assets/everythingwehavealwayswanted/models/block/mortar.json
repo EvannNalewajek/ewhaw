@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "everythingwehavealwayswanted:block/mega_iron_block",
+    "all": "everythingwehavealwayswanted:block/mega_iron_block",
+    "dark": "minecraft:block/black_concrete"
+  },
+  "elements": [
+    {
+      "name": "Base Plate",
+      "from": [0, 0, 0],
+      "to": [16, 4, 16],
+      "faces": {
+        "down":  {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "up":    {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "north": {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "south": {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "west":  {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "east":  {"uv": [0, 0, 16, 4],  "texture": "#all"}
+      }
+    },
+    {
+      "name": "Support Pillar",
+      "from": [4, 4, 4],
+      "to": [12, 14, 12],
+      "faces": {
+        "down":  {"uv": [4, 4, 12, 12], "texture": "#all"},
+        "up":    {"uv": [4, 4, 12, 12], "texture": "#all"},
+        "north": {"uv": [4, 0, 12, 10], "texture": "#all"},
+        "south": {"uv": [4, 0, 12, 10], "texture": "#all"},
+        "west":  {"uv": [4, 0, 12, 10], "texture": "#all"},
+        "east":  {"uv": [4, 0, 12, 10], "texture": "#all"}
+      }
+    },
+    {
+      "name": "Cannon Barrel",
+      "from": [2, 10, -2],
+      "to": [14, 30, 10],
+      "shade": false,
+      "rotation": {"origin": [8, 14, 8], "axis": "x", "angle": 22.5},
+      "faces": {
+        "down":  {"uv": [2, 2, 14, 14], "texture": "#all"},
+        "up":    {"uv": [2, 2, 14, 14], "texture": "#all"},
+        "north": {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "west":  {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "east":  {"uv": [0, 0, 16, 16], "texture": "#all"}
+      }
+    },
+    {
+      "name": "Cannon Rim (Top)",
+      "from": [1, 28, -3],
+      "to": [15, 32, 11],
+      "rotation": {"origin": [8, 14, 8], "axis": "x", "angle": 22.5},
+      "faces": {
+        "down":  {"uv": [1, 1, 15, 15], "texture": "#all"},
+        "up":    {"uv": [1, 1, 15, 15], "texture": "#dark"},
+        "north": {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "south": {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "west":  {"uv": [0, 0, 16, 4],  "texture": "#all"},
+        "east":  {"uv": [0, 0, 16, 4],  "texture": "#all"}
+      }
+    }
+  ]
+}
