@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R L",
+    "M M",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "everythingwehavealwayswanted:mega_iron_block"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "L": {
+      "item": "minecraft:lapis_block"
+    }
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_magnet",
+    "count": 1
+  }
+}

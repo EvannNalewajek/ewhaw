@@ -34,6 +34,8 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MEGA_GOLDEN_SHOVEL.get());
                         output.accept(ModItems.MEGA_DIAMOND_SHOVEL.get());
                         output.accept(ModItems.MEGA_NETHERITE_SHOVEL.get());
+
+                        output.accept(ModItems.MEGA_MAGNET.get());
                     })
                     .build());
 

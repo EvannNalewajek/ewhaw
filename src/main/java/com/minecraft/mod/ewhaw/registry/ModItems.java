@@ -6,6 +6,7 @@ import com.minecraft.mod.ewhaw.item.MegaGoldPickaxeItem;
 import com.minecraft.mod.ewhaw.item.MegaPickaxeItem;
 import com.minecraft.mod.ewhaw.item.MegaGoldenShovelItem;
 import com.minecraft.mod.ewhaw.item.MegaShovelItem;
+import com.minecraft.mod.ewhaw.item.MegaMagnetItem;
 import com.minecraft.mod.ewhaw.item.ModToolTiers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -86,6 +87,10 @@ public class ModItems {
                             ModToolTiers.MEGA_NETHERITE,
                             new Item.Properties().fireResistant().attributes(MegaShovelItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 1.5F, -3.0F))
                     ));
+
+    public static final DeferredItem<Item> MEGA_MAGNET =
+            ITEMS.register("mega_magnet",
+                    () -> new MegaMagnetItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
