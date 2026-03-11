@@ -15,10 +15,25 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import com.minecraft.mod.ewhaw.item.MegaBucketItem;
+import net.minecraft.world.level.material.Fluids;
+
 public class ModItems {
 
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(EverythingWeHaveAlwaysWanted.MODID);
+
+    public static final DeferredItem<Item> MEGA_BUCKET =
+            ITEMS.register("mega_bucket",
+                    () -> new MegaBucketItem(() -> Fluids.EMPTY, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_WATER_BUCKET =
+            ITEMS.register("mega_water_bucket",
+                    () -> new MegaBucketItem(() -> Fluids.WATER, new Item.Properties().craftRemainder(MEGA_BUCKET.get()).stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_LAVA_BUCKET =
+            ITEMS.register("mega_lava_bucket",
+                    () -> new MegaBucketItem(() -> Fluids.LAVA, new Item.Properties().craftRemainder(MEGA_BUCKET.get()).stacksTo(1)));
 
     public static final DeferredItem<BlockItem> MEGA_IRON_BLOCK_ITEM =
             ITEMS.registerSimpleBlockItem("mega_iron_block", ModBlocks.MEGA_IRON_BLOCK);

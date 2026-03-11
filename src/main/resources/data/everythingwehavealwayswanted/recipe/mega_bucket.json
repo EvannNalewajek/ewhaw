@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "M M",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "everythingwehavealwayswanted:mega_iron_block"
+    }
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_bucket",
+    "count": 1
+  }
+}

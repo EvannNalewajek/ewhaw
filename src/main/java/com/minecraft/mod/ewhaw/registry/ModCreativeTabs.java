@@ -36,6 +36,9 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MEGA_NETHERITE_SHOVEL.get());
 
                         output.accept(ModItems.MEGA_MAGNET.get());
+                        output.accept(ModItems.MEGA_BUCKET.get());
+                        output.accept(ModItems.MEGA_WATER_BUCKET.get());
+                        output.accept(ModItems.MEGA_LAVA_BUCKET.get());
                         output.accept(ModItems.MORTAR_ITEM.get());
                     })
                     .build());

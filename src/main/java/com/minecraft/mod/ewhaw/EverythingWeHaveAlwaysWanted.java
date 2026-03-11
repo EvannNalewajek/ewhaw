@@ -36,6 +36,9 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import com.minecraft.mod.ewhaw.block.entity.MortarBlockEntity;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(EverythingWeHaveAlwaysWanted.MODID)
@@ -99,6 +102,16 @@ public class EverythingWeHaveAlwaysWanted {
         ModBlockEntities.register(modEventBus);
         ModEntityTypes.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+
+        modEventBus.addListener(this::registerCapabilities);
+    }
+
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MORTAR_BLOCK_ENTITY.get(),
+                (mortar, side) -> mortar.getItemHandler()
+        );
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
