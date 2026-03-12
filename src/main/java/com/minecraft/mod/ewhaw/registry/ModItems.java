@@ -2,12 +2,7 @@ package com.minecraft.mod.ewhaw.registry;
 
 import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
 
-import com.minecraft.mod.ewhaw.item.MegaGoldPickaxeItem;
-import com.minecraft.mod.ewhaw.item.MegaPickaxeItem;
-import com.minecraft.mod.ewhaw.item.MegaGoldenShovelItem;
-import com.minecraft.mod.ewhaw.item.MegaShovelItem;
-import com.minecraft.mod.ewhaw.item.MegaMagnetItem;
-import com.minecraft.mod.ewhaw.item.ModToolTiers;
+import com.minecraft.mod.ewhaw.item.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -15,7 +10,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import com.minecraft.mod.ewhaw.item.MegaBucketItem;
 import net.minecraft.world.level.material.Fluids;
 
 public class ModItems {
@@ -101,6 +95,34 @@ public class ModItems {
                     () -> new MegaShovelItem(
                             ModToolTiers.MEGA_NETHERITE,
                             new Item.Properties().fireResistant().attributes(MegaShovelItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 1.5F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_IRON_HOE =
+            ITEMS.register("mega_iron_hoe",
+                    () -> new MegaHoeItem(
+                            ModToolTiers.MEGA_IRON,
+                            new Item.Properties().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_IRON, -2.0F, -1.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_GOLDEN_HOE =
+            ITEMS.register("mega_golden_hoe",
+                    () -> new MegaGoldenHoeItem(
+                            ModToolTiers.MEGA_GOLD,
+                            new Item.Properties().attributes(MegaGoldenHoeItem.createAttributes(ModToolTiers.MEGA_GOLD, -2.0F, -1.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_DIAMOND_HOE =
+            ITEMS.register("mega_diamond_hoe",
+                    () -> new MegaHoeItem(
+                            ModToolTiers.MEGA_DIAMOND,
+                            new Item.Properties().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_DIAMOND, -2.0F, -1.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_NETHERITE_HOE =
+            ITEMS.register("mega_netherite_hoe",
+                    () -> new MegaHoeItem(
+                            ModToolTiers.MEGA_NETHERITE,
+                            new Item.Properties().fireResistant().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, -2.0F, -1.0F))
                     ));
 
     public static final DeferredItem<Item> MEGA_MAGNET =
