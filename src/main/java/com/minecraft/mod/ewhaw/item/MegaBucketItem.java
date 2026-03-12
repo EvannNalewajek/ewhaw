@@ -56,13 +56,15 @@ public class MegaBucketItem extends BucketItem {
                             BlockState state = level.getBlockState(p);
                             if (state.getBlock() instanceof BucketPickup bucketPickup) {
                                 Fluid foundFluid = state.getFluidState().getType();
-                                if (foundFluid != Fluids.EMPTY) {
+                                if (foundFluid != Fluids.EMPTY && state.getFluidState().isSource()) {
                                     if (pickedFluid == Fluids.EMPTY) {
                                         pickedFluid = foundFluid;
                                     }
                                     if (foundFluid == pickedFluid) {
-                                        bucketPickup.pickupBlock(player, level, p, state);
-                                        pickedUpAny = true;
+                                        ItemStack pickedStack = bucketPickup.pickupBlock(player, level, p, state);
+                                        if (!pickedStack.isEmpty()) {
+                                            pickedUpAny = true;
+                                        }
                                     }
                                 }
                             }
@@ -75,8 +77,9 @@ public class MegaBucketItem extends BucketItem {
                         if (pickedFluid == Fluids.WATER) filledBucket = new ItemStack(ModItems.MEGA_WATER_BUCKET.get());
                         else if (pickedFluid == Fluids.LAVA) filledBucket = new ItemStack(ModItems.MEGA_LAVA_BUCKET.get());
                         
-                        ItemStack result = ItemUtils.createFilledResult(itemstack, player, filledBucket);
-                        return InteractionResultHolder.sidedSuccess(result, level.isClientSide());
+                        if (!filledBucket.isEmpty()) {
+                            return InteractionResultHolder.sidedSuccess(ItemUtils.createFilledResult(itemstack, player, filledBucket), level.isClientSide());
+                        }
                     }
                 } else {
                     // LOGIQUE : POSER 3x3

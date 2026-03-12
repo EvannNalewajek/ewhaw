@@ -2,6 +2,7 @@ package com.minecraft.mod.ewhaw.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class MegaGoldPickaxeItem extends MegaPickaxeItem {
+    private static final ThreadLocal<Boolean> MINING_ZONE = ThreadLocal.withInitial(() -> false);
 
     public MegaGoldPickaxeItem(Tier tier, Properties properties) {
         super(tier, properties);
@@ -22,13 +24,18 @@ public class MegaGoldPickaxeItem extends MegaPickaxeItem {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
-        if (!level.isClientSide && entity instanceof Player player) {
-
-            mineHugeArea(stack, level, state, pos, player);
-
-            stack.setDamageValue(stack.getDamageValue() + 248);
-
+        if (MINING_ZONE.get()) {
             return super.mineBlock(stack, level, state, pos, entity);
+        }
+
+        if (!level.isClientSide && entity instanceof Player player) {
+            try {
+                MINING_ZONE.set(true);
+                mineHugeArea(stack, level, state, pos, player);
+                stack.hurtAndBreak(50, player, EquipmentSlot.MAINHAND);
+            } finally {
+                MINING_ZONE.set(false);
+            }
         }
 
         return super.mineBlock(stack, level, state, pos, entity);
@@ -38,15 +45,13 @@ public class MegaGoldPickaxeItem extends MegaPickaxeItem {
         float pitch = player.getXRot();
         Direction face = player.getDirection();
 
-        for (int depth = 0; depth < 9; depth++) {
-            for (int a = -4; a <= 4; a++) {
-                for (int b = -4; b <= 4; b++) {
+        for (int depth = 0; depth < 5; depth++) {
+            for (int a = -2; a <= 2; a++) {
+                for (int b = -2; b <= 2; b++) {
                     BlockPos targetPos;
                     if (pitch > 40) {
-                        // regarder vers le bas
                         targetPos = originPos.offset(a, -depth, b);
                     } else if (pitch < -40) {
-                        // regarder vers le haut
                         targetPos = originPos.offset(a, depth, b);
                     } else if (face == Direction.NORTH) {
                         targetPos = originPos.offset(a, b, -depth);
@@ -57,6 +62,8 @@ public class MegaGoldPickaxeItem extends MegaPickaxeItem {
                     } else {
                         targetPos = originPos.offset(-depth, b, a);
                     }
+
+                    if (targetPos.equals(originPos)) continue;
 
                     BlockState targetState = level.getBlockState(targetPos);
 

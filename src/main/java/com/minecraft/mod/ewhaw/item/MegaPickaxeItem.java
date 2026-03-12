@@ -12,6 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class MegaPickaxeItem extends PickaxeItem {
+    // Ce flag empêche la récursion infinie (StackOverflow)
+    private static final ThreadLocal<Boolean> MINING_ZONE = ThreadLocal.withInitial(() -> false);
 
     public MegaPickaxeItem(Tier tier, Properties properties) {
         super(tier, properties);
@@ -24,37 +26,51 @@ public class MegaPickaxeItem extends PickaxeItem {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
+        // Si on est déjà en train de miner une zone, on arrête la récursion ici
+        if (MINING_ZONE.get()) {
+            return super.mineBlock(stack, level, state, pos, entity);
+        }
+
         if (!level.isClientSide && entity instanceof Player player) {
-            float pitch = player.getXRot();
-            Direction face = player.getDirection();
+            try {
+                // On active le verrou
+                MINING_ZONE.set(true);
+                
+                float pitch = player.getXRot();
+                Direction face = player.getDirection();
 
-            for (int a = -2; a <= 2; a++) {
-                for (int b = -2; b <= 2; b++) {
-                    BlockPos targetPos;
+                for (int a = -2; a <= 2; a++) {
+                    for (int b = -2; b <= 2; b++) {
+                        BlockPos targetPos;
 
-                    if (pitch > 40 || pitch < -40) {
-                        targetPos = pos.offset(a, 0, b);
-                    } else if (face == Direction.NORTH || face == Direction.SOUTH) {
-                        targetPos = pos.offset(a, b, 0);
-                    } else {
-                        targetPos = pos.offset(0, b, a);
-                    }
+                        if (pitch > 40 || pitch < -40) {
+                            targetPos = pos.offset(a, 0, b);
+                        } else if (face == Direction.NORTH || face == Direction.SOUTH) {
+                            targetPos = pos.offset(a, b, 0);
+                        } else {
+                            targetPos = pos.offset(0, b, a);
+                        }
 
-                    if (targetPos.equals(pos)) {
-                        continue;
-                    }
+                        if (targetPos.equals(pos)) {
+                            continue;
+                        }
 
-                    BlockState targetState = level.getBlockState(targetPos);
+                        BlockState targetState = level.getBlockState(targetPos);
 
-                    if (shouldBreakExtraBlock(level, stack, state, targetState, targetPos)) {
-                        continue;
-                    }
+                        if (shouldBreakExtraBlock(level, stack, state, targetState, targetPos)) {
+                            continue;
+                        }
 
-                    boolean destroyed = level.destroyBlock(targetPos, true, player);
-                    if (destroyed) {
-                        stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                        // Ici, l'appel à destroyBlock ne causera plus de StackOverflow
+                        boolean destroyed = level.destroyBlock(targetPos, true, player);
+                        if (destroyed) {
+                            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                        }
                     }
                 }
+            } finally {
+                // On libère toujours le verrou, même en cas d'erreur
+                MINING_ZONE.set(false);
             }
         }
 
@@ -72,22 +88,18 @@ public class MegaPickaxeItem extends PickaxeItem {
             return true;
         }
 
-        // blocs incassables
         if (targetState.getDestroySpeed(level, targetPos) < 0.0F) {
             return true;
         }
 
-        // évite de casser des blocs "hors outil"
         if (!stack.getItem().isCorrectToolForDrops(stack, targetState)) {
             return true;
         }
 
-        // évite les blocs que la pioche casse lentement / anormalement
         if (this.getDestroySpeed(stack, targetState) <= 1.0F) {
             return true;
         }
 
-        // garde seulement le même type de bloc que celui frappé
         return !targetState.is(originState.getBlock());
     }
 }
