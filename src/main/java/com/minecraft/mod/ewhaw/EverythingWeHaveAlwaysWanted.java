@@ -1,5 +1,6 @@
 package com.minecraft.mod.ewhaw;
 
+import com.minecraft.mod.ewhaw.entity.AbstractHumanEntity;
 import com.minecraft.mod.ewhaw.registry.ModBlocks;
 import com.minecraft.mod.ewhaw.registry.ModItems;
 import com.minecraft.mod.ewhaw.registry.ModCreativeTabs;
@@ -22,23 +23,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import com.minecraft.mod.ewhaw.block.entity.MortarBlockEntity;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(EverythingWeHaveAlwaysWanted.MODID)
@@ -85,11 +82,6 @@ public class EverythingWeHaveAlwaysWanted {
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (EverythingWeHaveAlwaysWanted) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
-        NeoForge.EVENT_BUS.register(this);
-
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -104,6 +96,11 @@ public class EverythingWeHaveAlwaysWanted {
         ModMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(this::registerAttributes);
+    }
+
+    private void registerAttributes(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event) {
+        event.put(ModEntityTypes.HUMAN.get(), AbstractHumanEntity.createAttributes().build());
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -132,12 +129,5 @@ public class EverythingWeHaveAlwaysWanted {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(EXAMPLE_BLOCK_ITEM);
         }
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 }

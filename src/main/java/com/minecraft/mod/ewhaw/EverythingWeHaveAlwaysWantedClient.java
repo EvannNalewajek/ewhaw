@@ -13,6 +13,7 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import com.minecraft.mod.ewhaw.registry.ModEntityTypes;
 import com.minecraft.mod.ewhaw.registry.ModMenuTypes;
+import com.minecraft.mod.ewhaw.client.renderer.HumanRenderer;
 import com.minecraft.mod.ewhaw.client.renderer.MortarShellRenderer;
 import com.minecraft.mod.ewhaw.client.screen.MortarScreen;
 
@@ -38,6 +39,7 @@ public class EverythingWeHaveAlwaysWantedClient {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.MORTAR_SHELL.get(), MortarShellRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.HUMAN.get(), HumanRenderer::new);
     }
 
     @SubscribeEvent

@@ -33,6 +33,9 @@
   "item.everythingwehavealwayswanted.mega_netherite_hoe": "Mega Netherite Hoe",
 
   "item.everythingwehavealwayswanted.mega_magnet": "Mega Magnet",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.main_hand": "Main Hand: Repels items and metallic mobs.",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.off_hand": "Off-Hand: Attracts items and metallic mobs.",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.metallic": "Affects mobs wearing Iron or Chainmail armor.",
 
   "item.everythingwehavealwayswanted.mega_bucket": "Mega Bucket",
   "item.everythingwehavealwayswanted.mega_water_bucket": "Mega Water Bucket",
