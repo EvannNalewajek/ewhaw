@@ -45,6 +45,8 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MEGA_WATER_BUCKET.get());
                         output.accept(ModItems.MEGA_LAVA_BUCKET.get());
                         output.accept(ModItems.MORTAR_ITEM.get());
+                        output.accept(ModItems.ADVENTURER_SPAWN_EGG.get());
+                        output.accept(ModItems.HUMAN_SPAWN_EGG.get());
                     })
                     .build());
 

@@ -129,6 +129,14 @@ public class ModItems {
             ITEMS.register("mega_magnet",
                     () -> new MegaMagnetItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> ADVENTURER_SPAWN_EGG =
+            ITEMS.register("adventurer_spawn_egg",
+                    () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntityTypes.ADVENTURER, 0x3498db, 0xFFD700, new Item.Properties()));
+
+    public static final DeferredItem<Item> HUMAN_SPAWN_EGG =
+            ITEMS.register("human_spawn_egg",
+                    () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntityTypes.HUMAN, 0x95a5a6, 0x34495e, new Item.Properties()));
+
     public static final DeferredItem<BlockItem> MORTAR_ITEM =
             ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
 

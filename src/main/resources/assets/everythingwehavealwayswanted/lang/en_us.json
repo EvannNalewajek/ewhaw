@@ -41,5 +41,9 @@
   "item.everythingwehavealwayswanted.mega_water_bucket": "Mega Water Bucket",
   "item.everythingwehavealwayswanted.mega_lava_bucket": "Mega Lava Bucket",
 
-  "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted"
+  "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Adventurer Spawn Egg",
+  "item.everythingwehavealwayswanted.human_spawn_egg": "Human Spawn Egg",
+  "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted",
+  "entity.everythingwehavealwayswanted.adventurer": "Adventurer",
+  "entity.everythingwehavealwayswanted.human": "Human"
 }

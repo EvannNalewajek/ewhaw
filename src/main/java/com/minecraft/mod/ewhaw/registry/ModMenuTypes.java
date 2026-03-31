@@ -1,6 +1,7 @@
 package com.minecraft.mod.ewhaw.registry;
 
 import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
+import com.minecraft.mod.ewhaw.menu.AdventurerMenu;
 import com.minecraft.mod.ewhaw.menu.MortarMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
@@ -16,6 +17,9 @@ public class ModMenuTypes {
 
     public static final Supplier<MenuType<MortarMenu>> MORTAR_MENU =
             MENUS.register("mortar_menu", () -> IMenuTypeExtension.create(MortarMenu::new));
+
+    public static final Supplier<MenuType<AdventurerMenu>> ADVENTURER_MENU =
+            MENUS.register("adventurer_menu", () -> IMenuTypeExtension.create(AdventurerMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

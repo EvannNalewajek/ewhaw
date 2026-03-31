@@ -1,6 +1,7 @@
 package com.minecraft.mod.ewhaw.registry;
 
 import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
+import com.minecraft.mod.ewhaw.entity.AdventurerEntity;
 import com.minecraft.mod.ewhaw.entity.HumanEntity;
 import com.minecraft.mod.ewhaw.entity.MortarShellEntity;
 import net.minecraft.core.registries.Registries;
@@ -26,9 +27,16 @@ public class ModEntityTypes {
     public static final Supplier<EntityType<HumanEntity>> HUMAN =
             ENTITY_TYPES.register("human",
                     () -> EntityType.Builder.of(HumanEntity::new, MobCategory.CREATURE)
-                            .sized(0.6F, 1.8F) // Taille d'un joueur
+                            .sized(0.6F, 1.8F)
                             .clientTrackingRange(10)
                             .build("human"));
+
+    public static final Supplier<EntityType<AdventurerEntity>> ADVENTURER =
+            ENTITY_TYPES.register("adventurer",
+                    () -> EntityType.Builder.of(AdventurerEntity::new, MobCategory.CREATURE)
+                            .sized(0.6F, 1.8F)
+                            .clientTrackingRange(10)
+                            .build("adventurer"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
