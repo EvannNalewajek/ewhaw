@@ -39,17 +39,12 @@ public class AdventurerRenderer extends MobRenderer<AdventurerEntity, PlayerMode
 
     @Override
     public void render(AdventurerEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-        // Switch de modèle
         this.model = entity.isSlim() ? this.slimModel : this.wideModel;
-        
-        // On n'applique les poses que si le bras n'est pas en train de balancer
-        if (entity.swingTime <= 0) {
-            this.model.rightArmPose = getArmPose(entity, HumanoidArm.RIGHT);
-            this.model.leftArmPose = getArmPose(entity, HumanoidArm.LEFT);
-        } else {
-            this.model.rightArmPose = HumanoidModel.ArmPose.EMPTY;
-            this.model.leftArmPose = HumanoidModel.ArmPose.EMPTY;
-        }
+        this.model.attackTime = entity.getAttackAnim(partialTicks);
+
+        this.model.rightArmPose = getArmPose(entity, HumanoidArm.RIGHT);
+        this.model.leftArmPose = getArmPose(entity, HumanoidArm.LEFT);
+        System.out.println(entity.getAttackAnim(partialTicks));
 
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }

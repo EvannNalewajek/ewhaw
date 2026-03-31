@@ -33,7 +33,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -149,13 +148,23 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        this.swing(InteractionHand.MAIN_HAND, true);
+        this.swing(InteractionHand.MAIN_HAND);
         return super.doHurtTarget(target);
     }
 
     @Override
+    public void handleEntityEvent(byte id) {
+        if (id == 4) {
+            this.swinging = true;
+            this.swingTime = 0;
+        } else {
+            super.handleEntityEvent(id);
+        }
+    }
+
+    @Override
     public void performRangedAttack(LivingEntity target, float velocity) {
-        this.swing(InteractionHand.MAIN_HAND, true);
+        this.swing(InteractionHand.MAIN_HAND);
         ItemStack ammoStack = new ItemStack(Items.ARROW);
         ItemStack weapon = this.getMainHandItem();
         if (!weapon.is(Items.BOW)) {
@@ -185,6 +194,7 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     @Override
     public void aiStep() {
         super.aiStep();
+        this.updateSwingTime();
         if (!this.level().isClientSide) {
             // Effet de résistance gratuit avec un bouclier
             if (this.tickCount % 20 == 0 && (this.getOffhandItem().is(Items.SHIELD) || this.getMainHandItem().is(Items.SHIELD))) {
