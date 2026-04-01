@@ -18,7 +18,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -48,6 +52,9 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
+
+    private static final ResourceLocation SNEAKING_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(EverythingWeHaveAlwaysWanted.MODID, "sneaking_speed_reduction");
+    private static final AttributeModifier SNEAKING_SPEED_MODIFIER = new AttributeModifier(SNEAKING_SPEED_MODIFIER_ID, -0.4D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
     private final SimpleContainer inventory = new SimpleContainer(9);
     
@@ -125,11 +132,15 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Monster.class, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, (target) -> {
+            if (this.isTame() && this.getOwner() != null && this.getOwner().isShiftKeyDown()) return false;
+            return true;
+        }));
     }
 
     @Override
     public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
+        if (owner.isShiftKeyDown()) return false;
         if (target instanceof Monster) return true;
         return super.wantsToAttack(target, owner);
     }
@@ -202,6 +213,35 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
             }
             
             if (this.isTame() && this.getOwner() instanceof Player player) {
+                // Synchronisation du sneak et arrêt des attaques
+                boolean ownerSneaking = player.isShiftKeyDown();
+                this.setShiftKeyDown(ownerSneaking);
+                this.setPose(ownerSneaking ? Pose.CROUCHING : Pose.STANDING);
+
+                AttributeInstance moveSpeed = this.getAttribute(Attributes.MOVEMENT_SPEED);
+                if (moveSpeed != null) {
+                    if (ownerSneaking) {
+                        if (!moveSpeed.hasModifier(SNEAKING_SPEED_MODIFIER_ID)) {
+                            moveSpeed.addTransientModifier(SNEAKING_SPEED_MODIFIER);
+                        }
+                        
+                        // Force les attaquants à lâcher la cible s'ils existent
+                        if (this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                            for (Monster monster : serverLevel.getEntitiesOfClass(Monster.class, this.getBoundingBox().inflate(16.0D))) {
+                                if (monster.getTarget() == this) {
+                                    monster.setTarget(null);
+                                }
+                            }
+                        }
+                    } else {
+                        moveSpeed.removeModifier(SNEAKING_SPEED_MODIFIER_ID);
+                    }
+                }
+
+                if (ownerSneaking && this.getTarget() != null) {
+                    this.setTarget(null);
+                }
+
                 double distanceSq = this.distanceToSqr(player);
                 if (distanceSq > 64.0D && this.getNavigation().isInProgress()) this.setSprinting(true);
                 else if (distanceSq < 16.0D) this.setSprinting(false);

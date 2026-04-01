@@ -40,11 +40,11 @@ public class AdventurerRenderer extends MobRenderer<AdventurerEntity, PlayerMode
     @Override
     public void render(AdventurerEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         this.model = entity.isSlim() ? this.slimModel : this.wideModel;
+        this.model.crouching = entity.isCrouching();
         this.model.attackTime = entity.getAttackAnim(partialTicks);
 
         this.model.rightArmPose = getArmPose(entity, HumanoidArm.RIGHT);
         this.model.leftArmPose = getArmPose(entity, HumanoidArm.LEFT);
-        System.out.println(entity.getAttackAnim(partialTicks));
 
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }

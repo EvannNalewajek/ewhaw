@@ -10,6 +10,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.SimpleContainer;
 
+import net.minecraft.world.inventory.InventoryMenu;
+
 public class AdventurerMenu extends AbstractContainerMenu {
     private final AdventurerEntity adventurer;
 
@@ -22,14 +24,14 @@ public class AdventurerMenu extends AbstractContainerMenu {
         this.adventurer = adventurer;
 
         // 1. Slots d'Armure (x=8)
-        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.HEAD, 8, 8, 0));
-        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.CHEST, 8, 26, 1));
-        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.LEGS, 8, 44, 2));
-        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.FEET, 8, 62, 3));
+        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.HEAD, 8, 8, 0)).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_HELMET);
+        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.CHEST, 8, 26, 1)).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_CHESTPLATE);
+        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.LEGS, 8, 44, 2)).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_LEGGINGS);
+        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.FEET, 8, 62, 3)).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_BOOTS);
 
         // 2. Mains (Main hand x=77, Off hand x=77)
         this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.MAINHAND, 77, 44, 4));
-        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.OFFHAND, 77, 62, 5));
+        this.addSlot(new AdventurerEquipmentSlot(adventurer, net.minecraft.world.entity.EquipmentSlot.OFFHAND, 77, 62, 5)).setBackground(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);
 
         // 3. Sac à dos (x=116)
         for (int i = 0; i < 3; ++i) {
@@ -112,9 +114,14 @@ public class AdventurerMenu extends AbstractContainerMenu {
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            // Logique de restriction (ex: mettre des bottes dans le slot bottes)
-            // Pour l'instant on autorise tout pour simplifier les tests
-            return true;
+            return switch (slotType) {
+                case HEAD -> stack.getItem() instanceof net.minecraft.world.item.ArmorItem armor && armor.getType() == net.minecraft.world.item.ArmorItem.Type.HELMET;
+                case CHEST -> stack.getItem() instanceof net.minecraft.world.item.ArmorItem armor && armor.getType() == net.minecraft.world.item.ArmorItem.Type.CHESTPLATE;
+                case LEGS -> stack.getItem() instanceof net.minecraft.world.item.ArmorItem armor && armor.getType() == net.minecraft.world.item.ArmorItem.Type.LEGGINGS;
+                case FEET -> stack.getItem() instanceof net.minecraft.world.item.ArmorItem armor && armor.getType() == net.minecraft.world.item.ArmorItem.Type.BOOTS;
+                case MAINHAND, OFFHAND -> true;
+                default -> false;
+            };
         }
 
         @Override

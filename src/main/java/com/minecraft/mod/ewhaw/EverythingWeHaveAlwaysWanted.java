@@ -79,12 +79,28 @@ public class EverythingWeHaveAlwaysWanted {
 
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerAttributes);
+        modEventBus.addListener(this::registerSpawnPlacements);
         NeoForge.EVENT_BUS.addListener(this::onEntityJoin);
+    }
+
+    private void registerSpawnPlacements(net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent event) {
+        event.register(ModEntityTypes.ADVENTURER.get(),
+                net.minecraft.world.entity.SpawnPlacementTypes.ON_GROUND,
+                net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.Animal::checkAnimalSpawnRules,
+                net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
     private void onEntityJoin(net.neoforged.neoforge.event.entity.EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof net.minecraft.world.entity.monster.Monster monster) {
-            monster.targetSelector.addGoal(3, new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(monster, com.minecraft.mod.ewhaw.entity.AdventurerEntity.class, true));
+            monster.targetSelector.addGoal(3, new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(
+                monster, 
+                com.minecraft.mod.ewhaw.entity.AdventurerEntity.class, 
+                10, // interval
+                true, // mustSee
+                false, // mustReach
+                (target) -> !target.isCrouching() // Prédicat : n'attaque pas s'il sneak
+            ));
         }
     }
 
