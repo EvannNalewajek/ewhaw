@@ -7,6 +7,7 @@ import com.minecraft.mod.ewhaw.registry.ModCreativeTabs;
 import com.minecraft.mod.ewhaw.registry.ModBlockEntities;
 import com.minecraft.mod.ewhaw.registry.ModEntityTypes;
 import com.minecraft.mod.ewhaw.registry.ModMenuTypes;
+import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -81,6 +82,30 @@ public class EverythingWeHaveAlwaysWanted {
         modEventBus.addListener(this::registerAttributes);
         modEventBus.addListener(this::registerSpawnPlacements);
         NeoForge.EVENT_BUS.addListener(this::onEntityJoin);
+        NeoForge.EVENT_BUS.addListener(this::onPotionApply);
+    }
+
+    private void onPotionApply(net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable event) {
+        net.minecraft.world.entity.LivingEntity target = event.getEntity();
+        
+        // On ne bloque que les effets négatifs (Harmful)
+        if (!event.getEffectInstance().getEffect().value().isBeneficial()) {
+            
+            // Cas 1 : Le Joueur subit un effet négatif lancé par SON aventurier
+            if (target instanceof Player player) {
+                for (com.minecraft.mod.ewhaw.entity.AdventurerEntity adventurer : player.level().getEntitiesOfClass(com.minecraft.mod.ewhaw.entity.AdventurerEntity.class, player.getBoundingBox().inflate(12.0D))) {
+                    if (adventurer.isTame() && adventurer.isOwnedBy(player)) {
+                        event.setResult(net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+                        return;
+                    }
+                }
+            }
+            
+            // Cas 2 : L'Aventurier subit un effet négatif (généralement son propre splash)
+            if (target instanceof com.minecraft.mod.ewhaw.entity.AdventurerEntity) {
+                event.setResult(net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+            }
+        }
     }
 
     private void registerSpawnPlacements(net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent event) {

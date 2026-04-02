@@ -57,9 +57,11 @@ public class MegaShovelItem extends ShovelItem {
                             continue;
                         }
 
-                        boolean destroyed = level.destroyBlock(targetPos, true, player);
-                        if (destroyed) {
-                            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                        if (level instanceof net.minecraft.server.level.ServerLevel) {
+                            net.minecraft.world.level.block.entity.BlockEntity blockEntity = level.getBlockEntity(targetPos);
+                            net.minecraft.world.level.block.Block.dropResources(targetState, level, targetPos, blockEntity, player, stack);
+                            level.removeBlock(targetPos, false);
+                            stack.hurtAndBreak(1, player, net.minecraft.world.entity.EquipmentSlot.MAINHAND);
                         }
                     }
                 }

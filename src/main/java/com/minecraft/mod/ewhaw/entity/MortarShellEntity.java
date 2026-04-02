@@ -42,6 +42,13 @@ public class MortarShellEntity extends ThrowableProjectile implements ItemSuppli
         // Ajoute des particules de fumée derrière le boulet pendant qu'il vole
         if (this.level().isClientSide) {
             this.level().addParticle(ParticleTypes.LARGE_SMOKE, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+            
+            // Effet sonore de sifflement (joué côté client pour plus de fluidité)
+            if (this.tickCount % 4 == 0) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), 
+                    net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_LAUNCH,
+                    net.minecraft.sounds.SoundSource.HOSTILE, 0.5F, 1.8F + this.random.nextFloat() * 0.2F, false);
+            }
         }
     }
 

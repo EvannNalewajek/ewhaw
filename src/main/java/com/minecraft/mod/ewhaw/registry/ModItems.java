@@ -108,21 +108,21 @@ public class ModItems {
             ITEMS.register("mega_golden_hoe",
                     () -> new MegaGoldenHoeItem(
                             ModToolTiers.MEGA_GOLD,
-                            new Item.Properties().attributes(MegaGoldenHoeItem.createAttributes(ModToolTiers.MEGA_GOLD, -2.0F, -1.0F))
+                            new Item.Properties().attributes(MegaGoldenHoeItem.createAttributes(ModToolTiers.MEGA_GOLD, 0.0F, -1.0F))
                     ));
 
     public static final DeferredItem<Item> MEGA_DIAMOND_HOE =
             ITEMS.register("mega_diamond_hoe",
                     () -> new MegaHoeItem(
                             ModToolTiers.MEGA_DIAMOND,
-                            new Item.Properties().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_DIAMOND, -2.0F, -1.0F))
+                            new Item.Properties().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_DIAMOND, -3.0F, 0.0F))
                     ));
 
     public static final DeferredItem<Item> MEGA_NETHERITE_HOE =
             ITEMS.register("mega_netherite_hoe",
                     () -> new MegaHoeItem(
                             ModToolTiers.MEGA_NETHERITE,
-                            new Item.Properties().fireResistant().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, -2.0F, -1.0F))
+                            new Item.Properties().fireResistant().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, -4.0F, 0.0F))
                     ));
 
     public static final DeferredItem<Item> MEGA_MAGNET =

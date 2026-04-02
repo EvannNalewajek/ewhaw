@@ -61,10 +61,17 @@ public class MegaPickaxeItem extends PickaxeItem {
                             continue;
                         }
 
-                        // Ici, l'appel à destroyBlock ne causera plus de StackOverflow
-                        boolean destroyed = level.destroyBlock(targetPos, true, player);
-                        if (destroyed) {
-                            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                        // Correction : On gère manuellement la destruction pour inclure les enchantements
+                        if (level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                            // 1. Faire tomber les ressources en tenant compte des enchantements (Fortune/Silk Touch)
+                            net.minecraft.world.level.block.entity.BlockEntity blockEntity = level.getBlockEntity(targetPos);
+                            net.minecraft.world.level.block.Block.dropResources(targetState, level, targetPos, blockEntity, player, stack);
+                            
+                            // 2. Retirer le bloc
+                            level.removeBlock(targetPos, false);
+                            
+                            // 3. Appliquer l'usure à l'outil
+                            stack.hurtAndBreak(1, player, net.minecraft.world.entity.EquipmentSlot.MAINHAND);
                         }
                     }
                 }

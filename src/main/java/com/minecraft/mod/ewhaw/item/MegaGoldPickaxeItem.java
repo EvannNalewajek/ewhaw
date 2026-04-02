@@ -71,7 +71,11 @@ public class MegaGoldPickaxeItem extends MegaPickaxeItem {
                         continue;
                     }
 
-                    level.destroyBlock(targetPos, true, player);
+                    if (level instanceof net.minecraft.server.level.ServerLevel) {
+                        net.minecraft.world.level.block.entity.BlockEntity blockEntity = level.getBlockEntity(targetPos);
+                        net.minecraft.world.level.block.Block.dropResources(targetState, level, targetPos, blockEntity, player, stack);
+                        level.removeBlock(targetPos, false);
+                    }
                 }
             }
         }
