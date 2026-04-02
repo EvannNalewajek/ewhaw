@@ -2,6 +2,7 @@ package com.minecraft.mod.ewhaw.entity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.TamableAnimal;
@@ -28,6 +29,8 @@ public abstract class AbstractHumanEntity extends TamableAnimal {
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return null;
     }
+
+    public abstract boolean checkTotemDeathProtection(DamageSource source);
 
     public abstract ResourceLocation getTextureLocation();
 }

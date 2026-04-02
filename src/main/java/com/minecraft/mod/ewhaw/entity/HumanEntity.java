@@ -2,6 +2,7 @@ package com.minecraft.mod.ewhaw.entity;
 
 import com.minecraft.mod.ewhaw.EverythingWeHaveAlwaysWanted;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -22,6 +23,11 @@ public class HumanEntity extends AbstractHumanEntity {
         this.goalSelector.addGoal(1, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+    }
+
+    @Override
+    public boolean checkTotemDeathProtection(DamageSource source) {
+        return false;
     }
 
     @Override

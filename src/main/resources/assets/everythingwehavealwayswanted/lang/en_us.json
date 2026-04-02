@@ -1,5 +1,5 @@
 {
-  "itemGroup.everythingwehavealwayswanted": "Example Mod Tab",
+  "itemGroup.everythingwehavealwayswanted": "Everything We Have Always Wanted",
   "block.everythingwehavealwayswanted.example_block": "Example Block",
   "item.everythingwehavealwayswanted.example_item": "Example Item",
 
@@ -45,5 +45,10 @@
   "item.everythingwehavealwayswanted.human_spawn_egg": "Human Spawn Egg",
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted",
   "entity.everythingwehavealwayswanted.adventurer": "Adventurer",
-  "entity.everythingwehavealwayswanted.human": "Human"
+  "entity.everythingwehavealwayswanted.human": "Human",
+
+  "message.everythingwehavealwayswanted.adventurer.down": "Your adventurer %s is down!",
+  "message.everythingwehavealwayswanted.adventurer.revived": "%s has been revived and is now your ally!",
+  "message.everythingwehavealwayswanted.adventurer.waiting": "Adventurer is now waiting.",
+  "message.everythingwehavealwayswanted.adventurer.following": "Adventurer is now following."
 }

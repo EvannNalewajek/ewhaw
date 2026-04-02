@@ -14,6 +14,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -54,6 +55,9 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     private static final EntityDataAccessor<Integer> DATA_SKIN_ID = SynchedEntityData.defineId(AdventurerEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_IS_SLIM = SynchedEntityData.defineId(AdventurerEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(AdventurerEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> DATA_IS_KO = SynchedEntityData.defineId(AdventurerEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> DATA_KO_TIMER = SynchedEntityData.defineId(AdventurerEntity.class, EntityDataSerializers.INT);
+
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
@@ -96,6 +100,8 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
         builder.define(DATA_SKIN_ID, 0);
         builder.define(DATA_IS_SLIM, false);
         builder.define(DATA_REMAINING_ANGER_TIME, 0);
+        builder.define(DATA_IS_KO, false);
+        builder.define(DATA_KO_TIMER, 0);
     }
 
     @Override
@@ -128,6 +134,10 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     public void setSkinId(int id) { this.entityData.set(DATA_SKIN_ID, id); }
     public boolean isSlim() { return this.entityData.get(DATA_IS_SLIM); }
     public void setSlim(boolean slim) { this.entityData.set(DATA_IS_SLIM, slim); }
+    public boolean isKO() { return this.entityData.get(DATA_IS_KO); }
+    public void setKO(boolean ko) { this.entityData.set(DATA_IS_KO, ko); }
+    public int getKOTimer() { return this.entityData.get(DATA_KO_TIMER); }
+    public void setKOTimer(int timer) { this.entityData.set(DATA_KO_TIMER, timer); }
 
     @Nullable
     @Override
@@ -196,10 +206,39 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
 
     @Override
     public boolean hurt(@NotNull net.minecraft.world.damagesource.DamageSource source, float amount) {
+        if (this.isKO()) return false;
+
         if (!this.level().isClientSide && source.getEntity() instanceof LivingEntity attacker && attacker != this.getOwner()) {
             this.setTarget(attacker); // On change de focus immédiatement sur l'agresseur
         }
         return super.hurt(source, amount);
+    }
+
+    @Override
+    public void die(@NotNull net.minecraft.world.damagesource.DamageSource source) {
+        if (source.is(net.minecraft.world.damagesource.DamageTypes.FELL_OUT_OF_WORLD) || this.isKO()) {
+            super.die(source);
+            return;
+        }
+
+        // Interception Totale
+        this.setHealth(1.0F);
+        this.setKO(true);
+        this.setKOTimer(1200);
+        this.navigation.stop();
+        this.setTarget(null);
+        this.setPose(Pose.SLEEPING);
+        
+        this.playSound(net.minecraft.sounds.SoundEvents.PLAYER_HURT, 1.0F, 0.5F);
+        
+        if (this.getOwner() instanceof Player player) {
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.everythingwehavealwayswanted.adventurer.down", this.getCustomName().getString()).withStyle(net.minecraft.ChatFormatting.RED), false);
+        }
+    }
+
+    @Override
+    public boolean checkTotemDeathProtection(net.minecraft.world.damagesource.DamageSource source) {
+        return false; 
     }
 
     private class AdventurerKiteGoal extends Goal {
@@ -406,20 +445,58 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     }
 
     @Override
+    public boolean isImmobile() {
+        return super.isImmobile() || this.isKO();
+    }
+
+    @Override
+    public boolean isEffectiveAi() {
+        return super.isEffectiveAi() && !this.isKO();
+    }
+
+    @Override
     public void aiStep() {
         super.aiStep();
         this.updateSwingTime();
+        
         if (!this.level().isClientSide) {
+            if (this.isKO()) {
+                this.setPose(Pose.SLEEPING);
+                this.setZza(0.0F);
+                this.setYya(0.0F);
+                this.setXxa(0.0F);
+                
+                int timer = this.getKOTimer();
+                if (timer > 0) {
+                    this.setKOTimer(timer - 1);
+                    if (this.tickCount % 20 == 0) {
+                        ((net.minecraft.server.level.ServerLevel)this.level()).sendParticles(net.minecraft.core.particles.ParticleTypes.DAMAGE_INDICATOR, this.getX(), this.getY() + 0.5D, this.getZ(), 1, 0.2D, 0.2D, 0.2D, 0.0D);
+                    }
+                } else {
+                    // Mort réelle après le timer : On désactive le mode KO AVANT de mourir pour éviter la boucle
+                    this.setKO(false);
+                    this.setHealth(0.0F);
+                    super.die(this.damageSources().generic());
+                }
+                return;
+            }
+
             // Effet de résistance gratuit avec un bouclier
             if (this.tickCount % 20 == 0 && (this.getOffhandItem().is(Items.SHIELD) || this.getMainHandItem().is(Items.SHIELD))) {
                 this.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 40, 0, false, false, false));
             }
             
             if (this.isTame() && this.getOwner() instanceof Player player) {
-                // Synchronisation du sneak et arrêt des attaques
+                // Synchronisation du sneak
                 boolean ownerSneaking = player.isShiftKeyDown();
                 this.setShiftKeyDown(ownerSneaking);
-                this.setPose(ownerSneaking ? Pose.CROUCHING : Pose.STANDING);
+                
+                // Gestion des Poses (Hors KO)
+                if (this.isOrderedToSit()) {
+                    this.setPose(Pose.SITTING);
+                } else {
+                    this.setPose(ownerSneaking ? Pose.CROUCHING : Pose.STANDING);
+                }
 
                 // Intelligence Alchimiste : Switch de potion selon la cible (uniquement si pas en train de soigner)
                 if (!this.isSupporting && this.tickCount % 5 == 0 && this.getTarget() != null) {
@@ -545,6 +622,29 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
     @Override
     public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
+        
+        // REANIMATION (Disponible pour tous les aventuriers KO)
+        if (this.isKO() && itemstack.is(Items.GOLDEN_APPLE)) {
+            if (!player.getAbilities().instabuild) itemstack.shrink(1);
+            
+            this.setKO(false);
+            this.setHealth(this.getMaxHealth() / 2.0F);
+            this.setPose(Pose.STANDING);
+            
+            // Apprivoisement automatique si sauvetage par un joueur
+            if (!this.isTame()) {
+                this.tame(player);
+            }
+            
+            this.level().broadcastEntityEvent(this, (byte) 7); // Particules de coeur
+            if (!this.level().isClientSide) {
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.everythingwehavealwayswanted.adventurer.revived", this.getCustomName().getString()).withStyle(net.minecraft.ChatFormatting.GREEN), true);
+            }
+            return InteractionResult.SUCCESS;
+        }
+
+        if (this.isKO()) return InteractionResult.PASS;
+
         if (this.isTame() && this.isOwnedBy(player)) {
             // Shift + Clic Droit : Assis / Debout
             if (player.isShiftKeyDown()) {
@@ -554,8 +654,8 @@ public class AdventurerEntity extends AbstractHumanEntity implements ContainerLi
                 this.setTarget(null);
                 
                 if (!this.level().isClientSide) {
-                    String message = this.isOrderedToSit() ? "Adventurer is now waiting." : "Adventurer is now following.";
-                    player.displayClientMessage(net.minecraft.network.chat.Component.literal(message), true);
+                    String key = this.isOrderedToSit() ? "message.everythingwehavealwayswanted.adventurer.waiting" : "message.everythingwehavealwayswanted.adventurer.following";
+                    player.displayClientMessage(net.minecraft.network.chat.Component.translatable(key), true);
                 }
                 return InteractionResult.SUCCESS;
             }

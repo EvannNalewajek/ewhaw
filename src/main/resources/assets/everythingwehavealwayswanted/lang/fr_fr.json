@@ -1,0 +1,51 @@
+{
+  "itemGroup.everythingwehavealwayswanted": "Tout Ce Qu'on A Toujours Voulu",
+  "block.everythingwehavealwayswanted.example_block": "Bloc d'Exemple",
+  "item.everythingwehavealwayswanted.example_item": "Objet d'Exemple",
+
+  "everythingwehavealwayswanted.configuration.title": "Configurations de EWHW",
+  "everythingwehavealwayswanted.configuration.section.everythingwehavealwayswanted.common.toml": "Configurations Communes",
+  "everythingwehavealwayswanted.configuration.items": "Liste des Objets",
+  "everythingwehavealwayswanted.configuration.logDirtBlock": "Journaliser les Blocs de Terre",
+
+  "block.everythingwehavealwayswanted.mega_iron_block": "Méga-Bloc de Fer",
+  "block.everythingwehavealwayswanted.mega_gold_block": "Méga-Bloc d'Or",
+  "block.everythingwehavealwayswanted.mega_diamond_block": "Méga-Bloc de Diamant",
+  "block.everythingwehavealwayswanted.mega_netherite_block": "Méga-Bloc de Netherite",
+  "block.everythingwehavealwayswanted.mortar": "Mortier de Défense",
+
+  "item.everythingwehavealwayswanted.mega_iron_pickaxe": "Méga-Pioche en Fer",
+  "item.everythingwehavealwayswanted.mega_gold_pickaxe": "Méga-Pioche en Or",
+  "item.everythingwehavealwayswanted.mega_diamond_pickaxe": "Méga-Pioche en Diamant",
+  "item.everythingwehavealwayswanted.mega_netherite_pickaxe": "Méga-Pioche en Netherite",
+
+  "item.everythingwehavealwayswanted.mega_iron_shovel": "Méga-Pelle en Fer",
+  "item.everythingwehavealwayswanted.mega_golden_shovel": "Méga-Pelle en Or",
+  "item.everythingwehavealwayswanted.mega_diamond_shovel": "Méga-Pelle en Diamant",
+  "item.everythingwehavealwayswanted.mega_netherite_shovel": "Méga-Pelle en Netherite",
+
+  "item.everythingwehavealwayswanted.mega_iron_hoe": "Méga-Houe en Fer",
+  "item.everythingwehavealwayswanted.mega_golden_hoe": "Méga-Houe en Or",
+  "item.everythingwehavealwayswanted.mega_diamond_hoe": "Méga-Houe en Diamant",
+  "item.everythingwehavealwayswanted.mega_netherite_hoe": "Méga-Houe en Netherite",
+
+  "item.everythingwehavealwayswanted.mega_magnet": "Méga-Aimant",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.main_hand": "Main principale : Repousse les objets et les monstres métalliques.",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.off_hand": "Main secondaire : Attire les objets et les monstres métalliques.",
+  "item.everythingwehavealwayswanted.mega_magnet.desc.metallic": "Affecte les entités portant une armure en Fer ou en Mailles.",
+
+  "item.everythingwehavealwayswanted.mega_bucket": "Méga-Seau",
+  "item.everythingwehavealwayswanted.mega_water_bucket": "Méga-Seau d'Eau",
+  "item.everythingwehavealwayswanted.mega_lava_bucket": "Méga-Seau de Lave",
+
+  "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Œuf d'apparition d'Aventurier",
+  "item.everythingwehavealwayswanted.human_spawn_egg": "Œuf d'apparition d'Humain",
+  "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "EWHW - Tout Ce Qu'on A Toujours Voulu",
+  "entity.everythingwehavealwayswanted.adventurer": "Aventurier",
+  "entity.everythingwehavealwayswanted.human": "Humain",
+
+  "message.everythingwehavealwayswanted.adventurer.down": "Votre aventurier %s est à terre !",
+  "message.everythingwehavealwayswanted.adventurer.revived": "%s a été réanimé et est maintenant votre allié !",
+  "message.everythingwehavealwayswanted.adventurer.waiting": "L'aventurier attend maintenant sur place.",
+  "message.everythingwehavealwayswanted.adventurer.following": "L'aventurier vous suit désormais."
+}
