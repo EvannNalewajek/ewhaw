@@ -22,6 +22,11 @@
   "item.everythingwehavealwayswanted.mega_diamond_pickaxe": "Mega Diamond Pickaxe",
   "item.everythingwehavealwayswanted.mega_netherite_pickaxe": "Mega Netherite Pickaxe",
 
+  "item.everythingwehavealwayswanted.mega_iron_axe": "Mega Iron Axe",
+  "item.everythingwehavealwayswanted.mega_golden_axe": "Mega Golden Axe",
+  "item.everythingwehavealwayswanted.mega_diamond_axe": "Mega Diamond Axe",
+  "item.everythingwehavealwayswanted.mega_netherite_axe": "Mega Netherite Axe",
+
   "item.everythingwehavealwayswanted.mega_iron_shovel": "Mega Iron Shovel",
   "item.everythingwehavealwayswanted.mega_golden_shovel": "Mega Golden Shovel",
   "item.everythingwehavealwayswanted.mega_diamond_shovel": "Mega Diamond Shovel",
@@ -50,5 +55,6 @@
   "message.everythingwehavealwayswanted.adventurer.down": "Your adventurer %s is down!",
   "message.everythingwehavealwayswanted.adventurer.revived": "%s has been revived and is now your ally!",
   "message.everythingwehavealwayswanted.adventurer.waiting": "Adventurer is now waiting.",
-  "message.everythingwehavealwayswanted.adventurer.following": "Adventurer is now following."
+  "message.everythingwehavealwayswanted.adventurer.following": "Adventurer is now following.",
+  "message.everythingwehavealwayswanted.tool_too_damaged": "Tool too damaged for Mega effect!"
 }

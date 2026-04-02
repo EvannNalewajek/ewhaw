@@ -19,6 +19,11 @@
   "item.everythingwehavealwayswanted.mega_diamond_pickaxe": "Méga-Pioche en Diamant",
   "item.everythingwehavealwayswanted.mega_netherite_pickaxe": "Méga-Pioche en Netherite",
 
+  "item.everythingwehavealwayswanted.mega_iron_axe": "Méga-Hache en Fer",
+  "item.everythingwehavealwayswanted.mega_golden_axe": "Méga-Hache en Or",
+  "item.everythingwehavealwayswanted.mega_diamond_axe": "Méga-Hache en Diamant",
+  "item.everythingwehavealwayswanted.mega_netherite_axe": "Méga-Hache en Netherite",
+
   "item.everythingwehavealwayswanted.mega_iron_shovel": "Méga-Pelle en Fer",
   "item.everythingwehavealwayswanted.mega_golden_shovel": "Méga-Pelle en Or",
   "item.everythingwehavealwayswanted.mega_diamond_shovel": "Méga-Pelle en Diamant",
@@ -47,5 +52,6 @@
   "message.everythingwehavealwayswanted.adventurer.down": "Votre aventurier %s est à terre !",
   "message.everythingwehavealwayswanted.adventurer.revived": "%s a été réanimé et est maintenant votre allié !",
   "message.everythingwehavealwayswanted.adventurer.waiting": "L'aventurier attend maintenant sur place.",
-  "message.everythingwehavealwayswanted.adventurer.following": "L'aventurier vous suit désormais."
+  "message.everythingwehavealwayswanted.adventurer.following": "L'aventurier vous suit désormais.",
+  "message.everythingwehavealwayswanted.tool_too_damaged": "Outil trop endommagé pour l'effet Méga !"
 }

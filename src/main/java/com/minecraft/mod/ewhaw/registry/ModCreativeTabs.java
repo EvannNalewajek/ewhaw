@@ -40,6 +40,11 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MEGA_DIAMOND_HOE.get());
                         output.accept(ModItems.MEGA_NETHERITE_HOE.get());
 
+                        output.accept(ModItems.MEGA_IRON_AXE.get());
+                        output.accept(ModItems.MEGA_GOLDEN_AXE.get());
+                        output.accept(ModItems.MEGA_DIAMOND_AXE.get());
+                        output.accept(ModItems.MEGA_NETHERITE_AXE.get());
+
                         output.accept(ModItems.MEGA_MAGNET.get());
                         output.accept(ModItems.MEGA_BUCKET.get());
                         output.accept(ModItems.MEGA_WATER_BUCKET.get());

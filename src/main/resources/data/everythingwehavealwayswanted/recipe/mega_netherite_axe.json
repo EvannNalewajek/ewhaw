@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "everythingwehavealwayswanted:mega_diamond_axe"
+  },
+  "addition": {
+    "item": "everythingwehavealwayswanted:mega_netherite_block"
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_netherite_axe",
+    "count": 1
+  }
+}

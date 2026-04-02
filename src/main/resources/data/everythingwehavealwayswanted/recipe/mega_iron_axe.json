@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM ",
+    "MS ",
+    " S "
+  ],
+  "key": {
+    "M": {
+      "item": "everythingwehavealwayswanted:mega_iron_block"
+    },
+    "S": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "id": "everythingwehavealwayswanted:mega_iron_axe",
+    "count": 1
+  }
+}

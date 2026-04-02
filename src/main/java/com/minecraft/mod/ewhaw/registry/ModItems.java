@@ -125,6 +125,34 @@ public class ModItems {
                             new Item.Properties().fireResistant().attributes(MegaHoeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, -4.0F, 0.0F))
                     ));
 
+    public static final DeferredItem<Item> MEGA_IRON_AXE =
+            ITEMS.register("mega_iron_axe",
+                    () -> new MegaAxeItem(
+                            ModToolTiers.MEGA_IRON,
+                            new Item.Properties().attributes(MegaAxeItem.createAttributes(ModToolTiers.MEGA_IRON, 6.0F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_GOLDEN_AXE =
+            ITEMS.register("mega_golden_axe",
+                    () -> new MegaGoldAxeItem(
+                            ModToolTiers.MEGA_GOLD,
+                            new Item.Properties().attributes(MegaGoldAxeItem.createAttributes(ModToolTiers.MEGA_GOLD, 6.0F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_DIAMOND_AXE =
+            ITEMS.register("mega_diamond_axe",
+                    () -> new MegaAxeItem(
+                            ModToolTiers.MEGA_DIAMOND,
+                            new Item.Properties().attributes(MegaAxeItem.createAttributes(ModToolTiers.MEGA_DIAMOND, 5.0F, -3.0F))
+                    ));
+
+    public static final DeferredItem<Item> MEGA_NETHERITE_AXE =
+            ITEMS.register("mega_netherite_axe",
+                    () -> new MegaAxeItem(
+                            ModToolTiers.MEGA_NETHERITE,
+                            new Item.Properties().fireResistant().attributes(MegaAxeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 5.0F, -3.0F))
+                    ));
+
     public static final DeferredItem<Item> MEGA_MAGNET =
             ITEMS.register("mega_magnet",
                     () -> new MegaMagnetItem(new Item.Properties().stacksTo(1)));
