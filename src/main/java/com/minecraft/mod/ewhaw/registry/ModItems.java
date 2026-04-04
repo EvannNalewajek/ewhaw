@@ -153,6 +153,10 @@ public class ModItems {
                             new Item.Properties().fireResistant().attributes(MegaAxeItem.createAttributes(ModToolTiers.MEGA_NETHERITE, 5.0F, -3.0F))
                     ));
 
+    public static final DeferredItem<Item> INVERTED_BOW =
+            ITEMS.register("inverted_bow",
+                    () -> new InvertedBowItem(new Item.Properties().stacksTo(1).durability(384)));
+
     public static final DeferredItem<Item> MEGA_MAGNET =
             ITEMS.register("mega_magnet",
                     () -> new MegaMagnetItem(new Item.Properties().stacksTo(1)));

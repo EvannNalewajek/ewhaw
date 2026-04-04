@@ -1,0 +1,6 @@
+{
+  "parent": "everythingwehavealwayswanted:item/inverted_bow",
+  "textures": {
+    "layer0": "everythingwehavealwayswanted:item/inverted_bow_pulling_1"
+  }
+}

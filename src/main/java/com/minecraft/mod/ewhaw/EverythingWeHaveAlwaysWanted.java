@@ -1,12 +1,7 @@
 package com.minecraft.mod.ewhaw;
 
 import com.minecraft.mod.ewhaw.entity.AbstractHumanEntity;
-import com.minecraft.mod.ewhaw.registry.ModBlocks;
-import com.minecraft.mod.ewhaw.registry.ModItems;
-import com.minecraft.mod.ewhaw.registry.ModCreativeTabs;
-import com.minecraft.mod.ewhaw.registry.ModBlockEntities;
-import com.minecraft.mod.ewhaw.registry.ModEntityTypes;
-import com.minecraft.mod.ewhaw.registry.ModMenuTypes;
+import com.minecraft.mod.ewhaw.registry.*;
 import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 
@@ -77,6 +72,7 @@ public class EverythingWeHaveAlwaysWanted {
         ModBlockEntities.register(modEventBus);
         ModEntityTypes.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerAttributes);

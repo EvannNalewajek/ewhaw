@@ -45,6 +45,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MEGA_DIAMOND_AXE.get());
                         output.accept(ModItems.MEGA_NETHERITE_AXE.get());
 
+                        output.accept(ModItems.INVERTED_BOW.get());
                         output.accept(ModItems.MEGA_MAGNET.get());
                         output.accept(ModItems.MEGA_BUCKET.get());
                         output.accept(ModItems.MEGA_WATER_BUCKET.get());

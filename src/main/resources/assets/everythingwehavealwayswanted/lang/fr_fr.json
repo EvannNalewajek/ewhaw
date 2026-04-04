@@ -45,6 +45,7 @@
 
   "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Œuf d'apparition d'Aventurier",
   "item.everythingwehavealwayswanted.human_spawn_egg": "Œuf d'apparition d'Humain",
+  "item.everythingwehavealwayswanted.inverted_bow": "Arc ?",
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "EWHW - Tout Ce Qu'on A Toujours Voulu",
   "entity.everythingwehavealwayswanted.adventurer": "Aventurier",
   "entity.everythingwehavealwayswanted.human": "Humain",
@@ -53,5 +54,6 @@
   "message.everythingwehavealwayswanted.adventurer.revived": "%s a été réanimé et est maintenant votre allié !",
   "message.everythingwehavealwayswanted.adventurer.waiting": "L'aventurier attend maintenant sur place.",
   "message.everythingwehavealwayswanted.adventurer.following": "L'aventurier vous suit désormais.",
-  "message.everythingwehavealwayswanted.tool_too_damaged": "Outil trop endommagé pour l'effet Méga !"
+  "message.everythingwehavealwayswanted.tool_too_damaged": "Outil trop endommagé pour l'effet Méga !",
+  "subtitles.everythingwehavealwayswanted.twang": "Bruit de Arc ?"
 }

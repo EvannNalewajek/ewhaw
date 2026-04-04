@@ -32,6 +32,21 @@ public class EverythingWeHaveAlwaysWantedClient {
     private void onClientSetup(FMLClientSetupEvent event) {
         EverythingWeHaveAlwaysWanted.LOGGER.info("HELLO FROM CLIENT SETUP");
         EverythingWeHaveAlwaysWanted.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+        event.enqueueWork(() -> {
+            net.minecraft.client.renderer.item.ItemProperties.register(com.minecraft.mod.ewhaw.registry.ModItems.INVERTED_BOW.get(), 
+                net.minecraft.resources.ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, seed) -> {
+                if (entity == null) {
+                    return 0.0F;
+                } else {
+                    return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
+                }
+            });
+            net.minecraft.client.renderer.item.ItemProperties.register(com.minecraft.mod.ewhaw.registry.ModItems.INVERTED_BOW.get(), 
+                net.minecraft.resources.ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, seed) -> {
+                return entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F;
+            });
+        });
     }
 
     private void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

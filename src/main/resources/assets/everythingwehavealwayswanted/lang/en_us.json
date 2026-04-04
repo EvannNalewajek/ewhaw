@@ -48,6 +48,7 @@
 
   "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Adventurer Spawn Egg",
   "item.everythingwehavealwayswanted.human_spawn_egg": "Human Spawn Egg",
+  "item.everythingwehavealwayswanted.inverted_bow": "Bow ?",
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted",
   "entity.everythingwehavealwayswanted.adventurer": "Adventurer",
   "entity.everythingwehavealwayswanted.human": "Human",
@@ -56,5 +57,6 @@
   "message.everythingwehavealwayswanted.adventurer.revived": "%s has been revived and is now your ally!",
   "message.everythingwehavealwayswanted.adventurer.waiting": "Adventurer is now waiting.",
   "message.everythingwehavealwayswanted.adventurer.following": "Adventurer is now following.",
-  "message.everythingwehavealwayswanted.tool_too_damaged": "Tool too damaged for Mega effect!"
+  "message.everythingwehavealwayswanted.tool_too_damaged": "Tool too damaged for Mega effect!",
+  "subtitles.everythingwehavealwayswanted.twang": "Bow ? twangs"
 }
