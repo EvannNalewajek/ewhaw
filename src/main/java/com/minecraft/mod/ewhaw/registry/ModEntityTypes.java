@@ -38,6 +38,13 @@ public class ModEntityTypes {
                             .clientTrackingRange(10)
                             .build("adventurer"));
 
+    public static final Supplier<EntityType<com.minecraft.mod.ewhaw.entity.SqwackEntity>> SQWACK =
+            ENTITY_TYPES.register("sqwack",
+                    () -> EntityType.Builder.of(com.minecraft.mod.ewhaw.entity.SqwackEntity::new, MobCategory.CREATURE)
+                            .sized(0.6F, 1.8F)
+                            .clientTrackingRange(10)
+                            .build("sqwack"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

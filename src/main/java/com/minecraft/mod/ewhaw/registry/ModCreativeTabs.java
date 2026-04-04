@@ -53,6 +53,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MORTAR_ITEM.get());
                         output.accept(ModItems.ADVENTURER_SPAWN_EGG.get());
                         output.accept(ModItems.HUMAN_SPAWN_EGG.get());
+                        output.accept(ModItems.SQWACK_SPAWN_EGG.get());
                     })
                     .build());
 

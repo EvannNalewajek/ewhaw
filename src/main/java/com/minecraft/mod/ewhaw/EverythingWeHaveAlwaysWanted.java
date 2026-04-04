@@ -2,6 +2,7 @@ package com.minecraft.mod.ewhaw;
 
 import com.minecraft.mod.ewhaw.entity.AbstractHumanEntity;
 import com.minecraft.mod.ewhaw.registry.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 
@@ -79,6 +80,28 @@ public class EverythingWeHaveAlwaysWanted {
         modEventBus.addListener(this::registerSpawnPlacements);
         NeoForge.EVENT_BUS.addListener(this::onEntityJoin);
         NeoForge.EVENT_BUS.addListener(this::onPotionApply);
+        NeoForge.EVENT_BUS.addListener(this::onLevelTick);
+        NeoForge.EVENT_BUS.addListener(this::onLivingHurt);
+    }
+
+    private void onLivingHurt(net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (event.getSource().getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow arrow) {
+                if (arrow.getOwner() instanceof com.minecraft.mod.ewhaw.entity.SqwackEntity sqwack) {
+                    if (sqwack.isTame() && sqwack.isOwnedBy(player)) {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
+    private final com.minecraft.mod.ewhaw.world.SqwackSpawner sqwackSpawner = new com.minecraft.mod.ewhaw.world.SqwackSpawner();
+
+    private void onLevelTick(net.neoforged.neoforge.event.tick.LevelTickEvent.Post event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            sqwackSpawner.tick(serverLevel);
+        }
     }
 
     private void onPotionApply(net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable event) {
@@ -128,6 +151,7 @@ public class EverythingWeHaveAlwaysWanted {
     private void registerAttributes(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event) {
         event.put(ModEntityTypes.HUMAN.get(), AbstractHumanEntity.createAttributes().build());
         event.put(ModEntityTypes.ADVENTURER.get(), AbstractHumanEntity.createAttributes().build());
+        event.put(ModEntityTypes.SQWACK.get(), AbstractHumanEntity.createAttributes().build());
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {

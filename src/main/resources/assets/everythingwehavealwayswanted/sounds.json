@@ -4,5 +4,20 @@
     "sounds": [
       "everythingwehavealwayswanted:twang"
     ]
+  },
+  "croa": {
+    "sounds": [
+      "everythingwehavealwayswanted:croa"
+    ]
+  },
+  "croa_hurt": {
+    "sounds": [
+      "everythingwehavealwayswanted:croa_hurt"
+    ]
+  },
+  "croa_agree": {
+    "sounds": [
+      "everythingwehavealwayswanted:croa_agree"
+    ]
   }
 }

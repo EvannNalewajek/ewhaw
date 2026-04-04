@@ -53,6 +53,7 @@ public class EverythingWeHaveAlwaysWantedClient {
         event.registerEntityRenderer(ModEntityTypes.MORTAR_SHELL.get(), MortarShellRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.HUMAN.get(), HumanRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ADVENTURER.get(), AdventurerRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.SQWACK.get(), com.minecraft.mod.ewhaw.client.renderer.SqwackRenderer::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {

@@ -45,10 +45,12 @@
 
   "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Œuf d'apparition d'Aventurier",
   "item.everythingwehavealwayswanted.human_spawn_egg": "Œuf d'apparition d'Humain",
+  "item.everythingwehavealwayswanted.sqwack_spawn_egg": "Œuf d'apparition de Sqwack",
   "item.everythingwehavealwayswanted.inverted_bow": "Arc ?",
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "EWHW - Tout Ce Qu'on A Toujours Voulu",
   "entity.everythingwehavealwayswanted.adventurer": "Aventurier",
   "entity.everythingwehavealwayswanted.human": "Humain",
+  "entity.everythingwehavealwayswanted.sqwack": "Sqwack",
 
   "message.everythingwehavealwayswanted.adventurer.down": "Votre aventurier %s est à terre !",
   "message.everythingwehavealwayswanted.adventurer.revived": "%s a été réanimé et est maintenant votre allié !",

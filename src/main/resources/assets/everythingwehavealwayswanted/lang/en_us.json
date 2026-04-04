@@ -48,10 +48,12 @@
 
   "item.everythingwehavealwayswanted.adventurer_spawn_egg": "Adventurer Spawn Egg",
   "item.everythingwehavealwayswanted.human_spawn_egg": "Human Spawn Egg",
+  "item.everythingwehavealwayswanted.sqwack_spawn_egg": "Sqwack Spawn Egg",
   "item.everythingwehavealwayswanted.inverted_bow": "Bow ?",
   "itemGroup.everythingwehavealwayswanted.ewhaw_tab": "Everything We Have Always Wanted",
   "entity.everythingwehavealwayswanted.adventurer": "Adventurer",
   "entity.everythingwehavealwayswanted.human": "Human",
+  "entity.everythingwehavealwayswanted.sqwack": "Sqwack",
 
   "message.everythingwehavealwayswanted.adventurer.down": "Your adventurer %s is down!",
   "message.everythingwehavealwayswanted.adventurer.revived": "%s has been revived and is now your ally!",

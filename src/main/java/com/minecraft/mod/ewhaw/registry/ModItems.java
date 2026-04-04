@@ -169,6 +169,10 @@ public class ModItems {
             ITEMS.register("human_spawn_egg",
                     () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntityTypes.HUMAN, 0x95a5a6, 0x34495e, new Item.Properties()));
 
+    public static final DeferredItem<Item> SQWACK_SPAWN_EGG =
+            ITEMS.register("sqwack_spawn_egg",
+                    () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntityTypes.SQWACK, 0x2c3e50, 0x000000, new Item.Properties()));
+
     public static final DeferredItem<BlockItem> MORTAR_ITEM =
             ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
 

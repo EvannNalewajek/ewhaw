@@ -16,6 +16,18 @@ public class ModSounds {
             SOUND_EVENTS.register("twang", 
                     () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(EverythingWeHaveAlwaysWanted.MODID, "twang")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> CROA =
+            SOUND_EVENTS.register("croa", 
+                    () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(EverythingWeHaveAlwaysWanted.MODID, "croa")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CROA_HURT =
+            SOUND_EVENTS.register("croa_hurt", 
+                    () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(EverythingWeHaveAlwaysWanted.MODID, "croa_hurt")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CROA_AGREE =
+            SOUND_EVENTS.register("croa_agree", 
+                    () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(EverythingWeHaveAlwaysWanted.MODID, "croa_agree")));
+
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }
